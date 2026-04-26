@@ -165,7 +165,7 @@ export default function App() {
             <PiggyBank className="w-6 h-6 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold tracking-tight text-lg text-white">Fofinha Finanças</span>
+            <span className="font-bold tracking-tight text-lg text-white">FinTrack AI</span>
             <span className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold italic">Modo Offline</span>
           </div>
         </div>
