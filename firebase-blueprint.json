@@ -1,0 +1,78 @@
+{
+  "entities": {
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Financial transaction (income or expense)",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner of the transaction"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["income", "expense"],
+          "description": "Type of transaction"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Value of the transaction"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category name or ID"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date of the transaction"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        }
+      },
+      "required": ["userId", "type", "amount", "description", "category", "date"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Transaction category",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User who created the category"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the category"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["income", "expense"],
+          "description": "Associated transaction type"
+        },
+        "color": {
+          "type": "string",
+          "description": "Hex color for UI"
+        }
+      },
+      "required": ["userId", "name", "type"]
+    }
+  },
+  "firestore": {
+    "transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "User transactions"
+    },
+    "categories/{categoryId}": {
+      "schema": "Category",
+      "description": "User custom categories"
+    }
+  }
+}

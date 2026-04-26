@@ -1,0 +1,6 @@
+{
+  "name": "FinTrack AI",
+  "description": "Smart personal finance tracker with AI-powered savings recommendations and visual expense analysis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["Real-time data visualization", "AI financial coaching"]
+}
