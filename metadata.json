@@ -1,6 +1,6 @@
 {
-  "name": "FinTrack AI",
-  "description": "Smart personal finance tracker with AI-powered savings recommendations and visual expense analysis.",
+  "name": "Fofinha Finanças",
+  "description": "Controle financeiro pessoal inteligente com IA e funcionamento 100% offline via armazenamento local.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["Real-time data visualization", "AI financial coaching"]
+  "majorCapabilities": ["Visualização em Tempo Real", "Insights com IA", "Privacidade Offline"]
 }
