@@ -4,7 +4,7 @@ import { Transaction, TransactionType } from "../types";
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY as string });
 
 export async function getSavingsRecommendations(transactions: Transaction[]) {
-  if (transactions.length === 0) return "Adicione algumas transações para obter recomendações personalizadas!";
+  if (transactions.length === 0) return "Add some transactions to get personalized savings recommendations!";
 
   const summary = transactions.reduce((acc, t) => {
     if (t.type === TransactionType.EXPENSE) {
@@ -16,18 +16,18 @@ export async function getSavingsRecommendations(transactions: Transaction[]) {
   const totalExpense = Object.values(summary).reduce((a, b) => a + b, 0);
   
   const prompt = `
-    Analise estes gastos mensais e forneça 3-4 recomendações de economia específicas e acionáveis em Português do Brasil.
+    Analyze these monthly expenses for a personal finance app and provide 3-4 specific, actionable savings recommendations.
     
-    Gastos:
-    ${Object.entries(summary).map(([cat, val]) => `- ${cat}: R$${val.toFixed(2)} (${((val/totalExpense)*100).toFixed(1)}%)`).join('\n')}
-    Gasto Total: R$${totalExpense.toFixed(2)}
+    Expenses:
+    ${Object.entries(summary).map(([cat, val]) => `- ${cat}: $${val.toFixed(2)} (${((val/totalExpense)*100).toFixed(1)}%)`).join('\n')}
+    Total Monthly Expense: $${totalExpense.toFixed(2)}
 
-    Formate cada recomendação como um objeto JSON. Atributos:
-    - title: Título curto e chamativo
-    - advice: Conselho detalhado com alvo de economia
-    - priority: "high", "medium", ou "low"
+    Format each recommendation as a JSON object within an array. Each object should have:
+    - title: A short catchy title
+    - advice: Detailed advice including a specific percentage or target if applicable
+    - priority: "high", "medium", or "low"
     
-    Responda ESTRITAMENTE em JSON.
+    Respond STRICTLY in JSON format.
   `;
 
   try {
@@ -53,7 +53,7 @@ export async function getSavingsRecommendations(transactions: Transaction[]) {
 
     return JSON.parse(response.text || "[]");
   } catch (error) {
-    console.error("Erro Gemini AI:", error);
+    console.error("Gemini AI error:", error);
     return [];
   }
 }
